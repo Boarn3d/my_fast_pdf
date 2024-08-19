@@ -1,5 +1,3 @@
-import random
-
 from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Resampling
 import math
