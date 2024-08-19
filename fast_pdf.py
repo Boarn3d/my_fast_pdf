@@ -709,14 +709,14 @@ class PDFGenerator:
         self.pages_number += 1
         self._pages_dict[self.pages_number] = page
 
-    def fast_build_page(self, element_list, title: str = None, description: str = None, resize: (int, int)=None,
+    def fast_build_page(self, element_list, title: str = None, description: str = None, resize: (int, int) = None,
                         specify_format: PDFFormatSaver = None) -> Page:
         """
         :param element_list: a list of tuples, list[(Image.Image or path_to_image, title, description), ...]
-        :param title: the title of the page
-        :param description: the description of the page
-        :param specify_format: the format of the page. Type: PDFFormatSaver
-        :param resize: whether to resize the plot in element_list
+        :param title: the title of the page. Could be None. Type: str
+        :param description: the description of the page. Could be None. Type: str
+        :param specify_format: the format of the page. Default format belongs to the instance. Type: PDFFormatSaver
+        :param resize: whether to resize the plot's image in element_list. Type: Tuple[int, int]
         :return: Page
         """
         if specify_format is None:
