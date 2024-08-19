@@ -586,8 +586,8 @@ class Page(Frame):
          self.default_gap, self.bg_color) = _ArgsDictParser.return_page_args(page_args_dict)
         self.__fill_margins()
 
-    def set_page_size(self, page_size: (int, int) = None):
-        if page_size is not None:
+    def set_page_size(self, page_size: (int, int) = (-1, -1)):
+        if page_size[0] > 0 and page_size[1] > 0:
             self.page_size = page_size
             self.specify_page_size = True
         else:
@@ -709,13 +709,14 @@ class PDFGenerator:
         self.pages_number += 1
         self._pages_dict[self.pages_number] = page
 
-    def fast_build_page(self, element_list, title: str = None, description: str = None,
+    def fast_build_page(self, element_list, title: str = None, description: str = None, resize: (int, int)=None,
                         specify_format: PDFFormatSaver = None) -> Page:
         """
         :param element_list: a list of tuples, list[(Image.Image or path_to_image, title, description), ...]
         :param title: the title of the page
         :param description: the description of the page
         :param specify_format: the format of the page. Type: PDFFormatSaver
+        :param resize: whether to resize the plot in element_list
         :return: Page
         """
         if specify_format is None:
@@ -747,6 +748,8 @@ class PDFGenerator:
             tmp_plot = Plot.generate_plot(im=im, title=ti, description=desc,
                                           description_font_args=specify_format.plot_description_font_args,
                                           title_font_args=specify_format.plot_title_font_args)
+            if resize is not None:
+                tmp_plot.resize(resize)
             tmp_position = (i % layout_frame[0], i // layout_frame[0])
             # print(layout_frame, i,tmp_position)
             tmp_main_frame.add_element(tmp_plot, position=tmp_position, alignment=1)
