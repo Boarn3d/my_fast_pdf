@@ -765,7 +765,7 @@ class PDFGenerator:
 
         return tmp_page
 
-    def generate_pdf(self, filename: str):
+    def save(self, filename: str):
         pdf_img_list = []
         for page_number in self._pages_dict.keys():
             pdf_img_list.append(self._pages_dict[page_number].render(page_number))
