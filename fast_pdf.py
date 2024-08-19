@@ -356,7 +356,6 @@ class Frame(object):
 
     def visualize_relation_tree(self) -> None:
         """
-        TODO: Visualize the relationship in image. Each block colors different and with its Node_id on it.
         :return:
         """
         image_numbers = 0
@@ -644,6 +643,9 @@ class Page(Frame):
 
 
 class PDFFormatSaver:
+    """
+    This class is used to save the format of the pdf.
+    """
 
     font_args_list = ['name', 'fontsize', 'color']
     page_args_list = ['horizontal_margin', 'vertical_margin', 'default_gap', 'bg_color']
@@ -694,6 +696,9 @@ class PDFFormatSaver:
 
 
 class PDFGenerator:
+    """
+    This class is used to generate a pdf from a PDFFormatSaver and elements.
+    """
     def __init__(self):
         self._pages_dict = {}
         self._pdf_format = PDFFormatSaver.get_default_format('arial.ttf')
@@ -769,6 +774,10 @@ class PDFGenerator:
 
     @classmethod
     def setup_from_FormatSaver(cls, format_saver: PDFFormatSaver):
+        """
+        :param format_saver: PDFFormatSaver instance, use to set up the whole pdf format
+        :return: an instance of PDFGenerator
+        """
         tmp_pdf_generator = cls()
         tmp_pdf_generator._pdf_format = format_saver
         return tmp_pdf_generator
