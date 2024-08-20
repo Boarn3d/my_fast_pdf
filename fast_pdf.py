@@ -536,7 +536,7 @@ class Page(Frame):
         self.add_element(self.main_frame, position=(1, 1))
         # Main frame initialize here.
 
-        self.specify_page_size = True
+        self.specify_page_size = False
         self.page_size = Page.default_page_size_list[0]
         # Default using A4 300dpi as page size.
 
