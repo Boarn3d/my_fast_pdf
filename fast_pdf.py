@@ -642,7 +642,7 @@ class Page(Frame):
         return render_page
 
 
-class PDFFormatSaver:
+class PDFFormatter:
     """
     This class is used to save the format of the pdf.
     """
@@ -679,29 +679,29 @@ class PDFFormatSaver:
 
     def set_target_type_font(self, typename: str, font_args: dict):
         if hasattr(self, typename):
-            if PDFFormatSaver.font_args_list.sort() == list(font_args.keys()).sort():
+            if PDFFormatter.font_args_list.sort() == list(font_args.keys()).sort():
                 setattr(self, typename, font_args)
             else:
                 raise KeyError(f"Arguments incomplete in: {font_args}\n"
-                               f"Should be {PDFFormatSaver.font_args_list}")
+                               f"Should be {PDFFormatter.font_args_list}")
         else:
-            raise Exception(f'No such type of font in PDFFormatSaver: {typename}')
+            raise Exception(f'No such type of font in PDFFormatter: {typename}')
 
     def set_page_args(self, page_args: dict):
-        if PDFFormatSaver.page_args_list.sort() == list(page_args.keys()).sort():
+        if PDFFormatter.page_args_list.sort() == list(page_args.keys()).sort():
             self.page_args = page_args
         else:
             raise KeyError(f"Arguments incomplete in: {page_args}\n"
-                           f"Should be {PDFFormatSaver.page_args_list}")
+                           f"Should be {PDFFormatter.page_args_list}")
 
 
 class PDFGenerator:
     """
-    This class is used to generate a pdf from a PDFFormatSaver and elements.
+    This class is used to generate a pdf from a PDFFormatter and elements.
     """
     def __init__(self):
         self._pages_dict = {}
-        self._pdf_format = PDFFormatSaver.get_default_format('arial.ttf')
+        self._pdf_format = PDFFormatter.get_default_format('arial.ttf')
 
         self.pages_number = 0
 
@@ -710,12 +710,12 @@ class PDFGenerator:
         self._pages_dict[self.pages_number] = page
 
     def fast_build_page(self, element_list, title: str = None, description: str = None, resize: (int, int) = None,
-                        specify_format: PDFFormatSaver = None) -> Page:
+                        specify_format: PDFFormatter = None) -> Page:
         """
         :param element_list: a list of tuples, list[(Image.Image or path_to_image, title, description), ...]
         :param title: the title of the page. Could be None. Type: str
         :param description: the description of the page. Could be None. Type: str
-        :param specify_format: the format of the page. Default format belongs to the instance. Type: PDFFormatSaver
+        :param specify_format: the format of the page. Default format belongs to the instance. Type: PDFFormatter
         :param resize: whether to resize the plot's image in element_list. Type: Tuple[int, int]
         :return: Page
         """
@@ -776,9 +776,9 @@ class PDFGenerator:
         first_page.save(filename, format='pdf', save_all=True, append_images=pdf_img_list)
 
     @classmethod
-    def setup_from_FormatSaver(cls, format_saver: PDFFormatSaver):
+    def setup_from_Formatter(cls, format_saver: PDFFormatter):
         """
-        :param format_saver: PDFFormatSaver instance, use to set up the whole pdf format
+        :param format_saver: PDFFormatter instance, use to set up the whole pdf format
         :return: an instance of PDFGenerator
         """
         tmp_pdf_generator = cls()
