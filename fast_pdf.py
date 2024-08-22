@@ -1,5 +1,5 @@
 # ylzhong, 2024 Aug
-# Generate and auto layout pdf from pics.
+# Generate and automatically layout pdf from images.
 
 from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Resampling
