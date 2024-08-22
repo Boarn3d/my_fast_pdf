@@ -27,13 +27,15 @@ Use ***pdf_generator.fast_build_page()*** to build page quickly.
 ##### Arguments:
 
 **element_list**: contains each plots' elements, a list of tuples. Title and description in the plot could be None.
-
 `Type: list[(Image.Image or path_to_image, title, description), ...]`
 
 **title**: the title of the page. Could be None. `Type: str`
+
 **description**: the description of the page. Could be None. `Type: str`
+
 **specify_format**: the format of the page. If this value is None, the page woulduse the format when setup_from_FormatSaver()
 `Type: fast_pdf.PDFFormatter`
+
 **resize**: whether to resize the plot's image to a specific size.
 `Type: Tuple[int, int]`
 
