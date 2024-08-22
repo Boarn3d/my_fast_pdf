@@ -33,7 +33,7 @@ Use ***pdf_generator.fast_build_page()*** to build page quickly.
 
 **description**: the description of the page. Could be None. `Type: str`
 
-**specify_format**: the format of the page. If this value is None, the page woulduse the format when setup_from_FormatSaver()
+**specify_format**: the format of the page. If this value is None, the page would use the format when setup_from_FormatSaver()
 `Type: fast_pdf.PDFFormatter`
 
 **resize**: whether to resize the plot's image to a specific size.
